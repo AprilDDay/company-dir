@@ -43,8 +43,48 @@
             </div><!-- end row div -->
         </div><!-- end container -->
     </div>
-
 </template>
+
+<script>
+const axios = require('axios')
+import VClamp from 'vue-clamp'
+
+export default {
+    components: {
+        VClamp,
+    },
+    name: 'home',
+    data() {
+        return {
+            secretKey: '$2b$10$Wb8VppNIDoAhIAB8n8oFnuCuOnANGbL7pxknMH8lhYplG40/hi5LC',/*usually do not put secrets on git*/
+            companies: [],
+        }
+    },//end data()
+    mounted() {
+        this.getCompany()
+    },
+    methods: {
+        async getCompany() {
+            try{
+                let response = await this.$http.get(
+                    `https://api.jsonbin.io/b/5f20829bc58dc34bf5dca275`,
+                    {
+                        headers: {
+                            'secret-key': this.secretKey,
+                        },
+                    },
+                )
+                console.log(response.data)
+                this.companies = response.data
+            }catch (error){
+                console.log("Oops! An error was found: ", error.response)
+            }
+        },
+    },//end emthodds 
+}
+
+</script>
+
 
 <style scoped>
 
