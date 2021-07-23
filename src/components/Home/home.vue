@@ -34,7 +34,7 @@
                                         industry:
                                         <span></span>
                                     </h5>
-                                    <router-link to="#">read more</router-link>
+                                    <router-link to="{name: 'About', params: { companyid: company.objectID},}">read more</router-link>
                                 </div><!-- end div class inline -->
                             </div>
                         </div> 

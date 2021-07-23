@@ -1,5 +1,5 @@
 import Vue from 'vue';
-//import { createApp } from 'vue';
+import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router/router';
 import "bootstrap";
@@ -22,7 +22,7 @@ const base = axios.create({
 //checked answer on https://www.reddit.com/r/vuejs/comments/j99qgn/help_vue_js_3_cannot_read_property_prototype_of/
 //const app = Vue.creatApp({})
 const app = Vue.createApp(App)
-app.config.globalProperties.$http = () => { base }
+app.config.globalProperties.$http = base 
 //throws error createApp is defined but never used
 
 
