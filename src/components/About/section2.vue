@@ -1,8 +1,52 @@
 <template>
-
+    <div>
+        <div class="body">
+            <div class="container px-0">
+                <div class="row">
+                    <!-- more card details here -->
+                    <div class="col-md-7 white_bg">
+                        <h4>about us</h4>
+                        <div class="about mt-4">
+                            <p>{{ companies ? companies.Long_description : 'Not available ' }}</p>
+                        </div><!-- end div class about mt-4 -->
+                    </div><!-- end class col-md-7 white_bg -->
+                </div><!-- end class row -->
+            </div><!-- end container px-0 -->
+        </div><!-- end class body -->
+    </div>
 </template>
 
 <script>
+    const axios = require("axios")
+    export default {
+        name: "",
+        data(){
+            return{
+                secretKey: "$2b$10$Wb8VppNIDoAhIAB8n8oFnuCuOnANGbL7pxknMH8lhYplG40/hi5LC",
+                companies: null,
+                router: this.$route.params.companyid,
+            };
+        },
+        mounted(){
+            this.getCompany();
+        },
+        methods: {
+            async getCompany(){
+                try{
+                    let response = await this.$http.get(
+                        `https://api.jsonbin.io/b/5f20829bc58dc34bf5dca275`,
+                        {
+                            headers: {
+                                  "secret-key": this.secretKey,
+                            }, 
+                        },
+                    );
+                }catch(error){
+                    console.log("Oops! There was an error:", error.response);
+                }
+            },
+        },
+    };
 </script>
 
 <style scoped>
